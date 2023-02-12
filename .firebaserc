@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "angularlogincrud": {
+      "hosting": {
+        "AngularLoginRegisterCRUD": [
+          "angularlogincrud"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "angularlogincrud"
+  }
+}
