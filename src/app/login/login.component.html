@@ -1,25 +1,26 @@
-<button mat-raised-button color="primary" routerLink="/home">
-    Home
-</button>
-
-<mat-card>
+<div class="login-container">
+  <mat-card>
+    <button mat-raised-button color="primary" routerLink="/home">
+      Home
+    </button>
     <form [formGroup]="loginForm" (ngSubmit)="loginUser()" type="">
-        <p>
-            <mat-form-field appearance="outline">
-                <mat-label>Email</mat-label>
-                <input autocomplete="off" formControlName="email" type="email" matInput placeholder="Email">
-            </mat-form-field>
-        </p>
-        <p>
-            <mat-form-field appearance="outline">
-                <mat-label>Password</mat-label>
-                <input autocomplete="off" formControlName="password" type="password" matInput placeholder="Password">
-            </mat-form-field>
-        </p>
-        <div *ngIf="firebaseErrorMessage != ''" class="error-style">
-            <span>{{ firebaseErrorMessage }}</span>
-        </div>
-
-        <button mat-raised-button color="primary">Login</button>
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input autocomplete="off" formControlName="email" type="email" matInput placeholder="Email">
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input autocomplete="off" formControlName="password" type="password" matInput placeholder="Password">
+        </mat-form-field>
+      </p>
+      <div>
+        <button mat-raised-button color="primary" type="button" (click)="authService.GoogleAuth()">
+          Google
+        </button>
+      </div>
     </form>
-</mat-card>
+  </mat-card>
+</div>

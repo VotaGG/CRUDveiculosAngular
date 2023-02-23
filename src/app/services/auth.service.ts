@@ -1,24 +1,40 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { GoogleAuthProvider } from 'firebase/auth';
 import firebase from 'firebase/compat/app';
 import { Router } from '@angular/router';
 
 @Injectable({
-    providedIn: 'root'
+    providedIn: 'root',
 })
 export class AuthService {
 
-    userLoggedIn: boolean;      // other components can check on this variable for the login status of the user
+    userLoggedIn: boolean;
 
     constructor(private router: Router, private afAuth: AngularFireAuth) {
         this.userLoggedIn = false;
 
-        this.afAuth.onAuthStateChanged((user) => {              // set up a subscription to always know the login status of the user
+        this.afAuth.onAuthStateChanged((user) => {
             if (user) {
                 this.userLoggedIn = true;
             } else {
                 this.userLoggedIn = false;
             }
+        });
+    }
+
+    GoogleAuth() {
+      return this.AuthLogin(new GoogleAuthProvider());
+    }
+
+    AuthLogin(provider: GoogleAuthProvider) {
+      return this.afAuth
+        .signInWithPopup(provider)
+        .then((result) => {
+          console.log('You have been successfully logged in!');
+        })
+        .catch((error) => {
+          console.log(error);
         });
     }
 
@@ -39,7 +55,7 @@ export class AuthService {
             const result = await this.afAuth.createUserWithEmailAndPassword(user.email, user.password);
             if (result && result.user) {
                 let emailLower = user.email.toLowerCase();
-                result.user.sendEmailVerification();                    // immediately send the user a verification email
+                result.user.sendEmailVerification();
                 return result;
             }
         } catch (error) {

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -19,6 +20,10 @@ import { AngularFireModule } from "@angular/fire/compat";
 import { environment } from '../environments/environment';
 import { MatIconModule } from '@angular/material/icon';
 
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import {MenuItem} from 'primeng/api';
+import {AccordionModule} from 'primeng/accordion';
+import { ButtonModule } from 'primeng/button';
 
 @NgModule({
   declarations: [
@@ -27,7 +32,7 @@ import { MatIconModule } from '@angular/material/icon';
     SignupComponent,
     LoginComponent,
     DashboardComponent,
-    
+
 
   ],
   imports: [
@@ -35,12 +40,14 @@ import { MatIconModule } from '@angular/material/icon';
     AppRoutingModule,
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
     MatIconModule,
     MatButtonModule,
     MatCardModule,
     MatInputModule,
     FormsModule,
     ReactiveFormsModule,
+    ButtonModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,19 +1,6 @@
 <button mat-raised-button color="primary" routerLink="/home">
   Home
 </button>
-<mat-card *ngFor="let vehicle of vehicles">
-  <mat-card-header>
-    <mat-card-title>{{vehicle.make}} {{vehicle.model}}</mat-card-title>
-  </mat-card-header>
-  <mat-card-content>
-    Ano: {{vehicle.year}}<br>
-    Tipo: {{vehicle.type}}<br>
-    Cor: {{vehicle.color}}
-  </mat-card-content>
-  <mat-card-actions>
-    <button mat-button (click)="removeVehicle(vehicle)">Remover</button>
-  </mat-card-actions>
-</mat-card>
 <mat-card>
   <mat-card-header>
     <mat-card-title>Adicionar veículo</mat-card-title>
@@ -37,5 +24,18 @@
   </mat-card-content>
   <mat-card-actions>
     <button mat-button (click)="addVehicle()">Adicionar</button>
+  </mat-card-actions>
+</mat-card>
+<mat-card *ngFor="let vehicle of vehicles">
+  <mat-card-header>
+    <mat-card-title>{{vehicle.make}} {{vehicle.model}}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    Ano: {{vehicle.year}}<br>
+    Tipo: {{vehicle.type}}<br>
+    Cor: {{vehicle.color}}
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button (click)="removeVehicle(vehicle)">Remover</button>
   </mat-card-actions>
 </mat-card>

@@ -6,6 +6,10 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import firebase from 'firebase/compat/app';
 
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
 @Component({
     selector: 'app-login',
     templateUrl: './login.component.html',
@@ -16,7 +20,8 @@ export class LoginComponent implements OnInit {
     loginForm: FormGroup;
     firebaseErrorMessage: string;
 
-    constructor(private authService: AuthService, private router: Router, private afAuth: AngularFireAuth) {
+
+    constructor(public authService: AuthService, private router: Router, private afAuth: AngularFireAuth) {
         this.loginForm = new FormGroup({
             'email': new FormControl('', [Validators.required, Validators.email]),
             'password': new FormControl('', Validators.required)
@@ -34,9 +39,9 @@ export class LoginComponent implements OnInit {
             return;
 
         this.authService.loginUser(this.loginForm.value.email, this.loginForm.value.password).then((result) => {
-            if (result == null) {                               // null is success, false means there was an error
+            if (result == null) {
                 console.log('logging in...');
-                this.router.navigate(['/dashboard']);                // when the user is logged in, navigate them to dashboard
+                this.router.navigate(['/dashboard']);
             }
             else if (result.isValid == false) {
                 console.log('login error', result);
